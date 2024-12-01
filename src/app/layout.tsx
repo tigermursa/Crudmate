@@ -10,7 +10,7 @@ import "./globals.css";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Slide } from "react-toastify";
-import { TanstackProvider } from "@/components/providers/tanstack-provider";
+import { SWRProvider } from "@/utils/swr-config";
 
 // Fonts
 const geistSans = localFont({
@@ -92,7 +92,7 @@ export default function RootLayout({
               pauseOnHover
               theme="light"
             />
-            <TanstackProvider>{children}</TanstackProvider>
+            <SWRProvider>{children}</SWRProvider>
           </main>
         </div>
       </body>
