@@ -11,4 +11,5 @@ export interface user {
     email: string;
     work: string;
     fullName: string; // Virtual field
+    isDeleted: boolean;
 }

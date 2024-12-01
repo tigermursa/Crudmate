@@ -1,6 +1,7 @@
 "use client";
 
 import useSWR from "swr";
+
 import {
   FaEdit,
   FaTrashAlt,
@@ -14,6 +15,7 @@ import { api } from "@/utils/api"; // Assuming api.ts contains your API methods
 import { user } from "@/types/types";
 import { useState } from "react";
 import EditUserModal from "@/components/modals/EditUserModal/EditUserModal";
+import { toast } from "react-toastify";
 
 // Function to generate a deterministic color based on the user's name
 const getColorFromName = (name: string) => {
@@ -51,6 +53,20 @@ const AllUsers = () => {
     setModalOpen(true); // Open the modal
   };
 
+  const handleDeleteClick = async (uid: string) => {
+    try {
+      // Call the toggle delete API
+      const result = await api.deleteUserByUIDToggle(uid);
+      if (result.success) {
+        // If success, re-fetch the user list to update the UI
+        toast.success("Yo Toggled");
+        mutate(); // This will trigger a re-fetch of the users list
+      }
+    } catch (error) {
+      console.error("Failed to toggle delete status", error);
+    }
+  };
+
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error loading users</div>;
 
@@ -77,8 +93,9 @@ const AllUsers = () => {
                 <FaEdit className="text-white text-sm" />
               </button>
               <button
-                title="Delete User"
+                title={user.isDeleted ? "Restore User" : "Delete User"}
                 className="p-2 rounded-full bg-gray-700 hover:bg-gray-600 transition-colors"
+                onClick={() => handleDeleteClick(user.uid)} // Toggle delete status
               >
                 <FaTrashAlt className="text-white text-sm" />
               </button>
