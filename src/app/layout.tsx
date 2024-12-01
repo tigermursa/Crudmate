@@ -34,7 +34,7 @@ export const metadata: Metadata = {
 const demoItems = [
   { name: "Home", icon: <IoHome />, path: "/" },
   { name: "Add User", icon: <IoMdAdd />, path: "/create-user" },
-  { name: "Deleted", icon: <FaHistory />, path: "/fuel" },
+  { name: "Deleted", icon: <FaHistory />, path: "/deleted-users" },
   { name: "Search", icon: <FaSearch />, path: "/temperature" },
   { name: "Single", icon: <FaRegUser />, path: "/single-user" },
   { name: "Analytics", icon: <FaChartPie />, path: "/analytics" },
