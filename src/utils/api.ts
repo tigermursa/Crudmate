@@ -19,6 +19,12 @@ export const api = {
         return response.json();
     },
 
+    getAllDeletedUsers: async () => {
+        const response = await fetch(`${BASE_URL}/users/deleted`);
+        if (!response.ok) throw new Error('Failed to fetch users');
+        return response.json();
+    },
+
     getUserByUID: async (uid: string) => {
         const response = await fetch(`${BASE_URL}/get-user/${uid}`);
         if (!response.ok) throw new Error('Failed to fetch user');
@@ -28,6 +34,14 @@ export const api = {
     deleteUserByUID: async (uid: string) => {
         const response = await fetch(`${BASE_URL}/delete-user/${uid}`, {
             method: 'DELETE',
+        });
+        if (!response.ok) throw new Error('Failed to delete user');
+        return response.json();
+    },
+
+    deleteUserByUIDToggle: async (uid: string) => {
+        const response = await fetch(`${BASE_URL}/user/${uid}/toggle-delete`, {
+            method: 'PATCH',
         });
         if (!response.ok) throw new Error('Failed to delete user');
         return response.json();
@@ -54,3 +68,9 @@ export const api = {
         return response.json();
     },
 };
+
+// Route to toggle user delete status
+//router.patch('/user/:uid/toggle-delete', toggleUserDeleteStatusController);
+
+// Route to get deleted users
+//router.get('/users/deleted', getDeletedUsersController);
