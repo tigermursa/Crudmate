@@ -62,11 +62,8 @@ export const api = {
         return response.json();
     },
 
-    searchUsers: async (query: string) => {
-        const response = await fetch(`${BASE_URL}/search-users?query=${query}`);
-        if (!response.ok) throw new Error('Failed to search users');
-        return response.json();
-    },
+
+
 };
 
 // Route to toggle user delete status
