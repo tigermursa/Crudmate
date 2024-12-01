@@ -1,8 +1,8 @@
+import DeleteUserButton from "@/components/buttons/DeleteUserButton/DeleteUserButton";
+import UpdateUserModal from "@/components/modals/UpdateUserModal/UpdateUserModal";
 import { getAllUsers } from "@/lib/getAllUsers";
 import { user } from "@/types/types";
 import {
-  FaEdit,
-  FaTrashAlt,
   FaPhone,
   FaMapMarkerAlt,
   FaBriefcase,
@@ -16,7 +16,7 @@ const getColorFromName = (name: string) => {
   let hash = 0;
   for (let i = 0; i < name.length; i++) {
     hash = (hash << 5) - hash + name.charCodeAt(i);
-    hash |= 0; // Convert to 32bit integer
+    hash |= 0; // Converting to 32bit integer
   }
 
   // Map the hash to one of the colors in the list
@@ -51,18 +51,10 @@ const Home = async () => {
           >
             {/* Action Buttons */}
             <div className="absolute top-2 right-2 flex space-x-2">
-              <button
-                title="Edit User"
-                className="p-2 rounded-full bg-gray-700 hover:bg-gray-600 transition-colors"
-              >
-                <FaEdit className="text-white text-sm" />
-              </button>
-              <button
-                title="Delete User"
-                className="p-2 rounded-full bg-gray-700 hover:bg-gray-600 transition-colors"
-              >
-                <FaTrashAlt className="text-white text-sm" />
-              </button>
+              {/* update button */}
+              <UpdateUserModal />
+              {/* user delete button */}
+              <DeleteUserButton />
             </div>
 
             {/* Avatar */}
