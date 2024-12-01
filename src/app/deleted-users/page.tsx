@@ -50,7 +50,7 @@ const AllDeletedUsers = () => {
       const result = await api.deleteUserByUIDToggle(uid);
       if (result.success) {
         // If success, re-fetch the user list to update the UI
-        toast.success("Yo Toggled");
+        toast.success("User Resorted Successfully");
         mutate(); // This will trigger a re-fetch of the users list
       }
     } catch (error) {
