@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import {
-  FaRocket,
-  FaChartPie,
-  FaTachometerAlt,
-  FaFire,
-  FaThermometerHalf,
-} from "react-icons/fa";
+import { FaHistory, FaChartPie, FaSearch, FaRegUser } from "react-icons/fa";
+import { IoHome } from "react-icons/io5";
+import { IoMdAdd } from "react-icons/io";
 import Link from "next/link";
 import "./globals.css";
+
+// react toastify
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { Slide } from "react-toastify";
 
 // Fonts
 const geistSans = localFont({
@@ -30,12 +31,12 @@ export const metadata: Metadata = {
 
 // Sidebar items with paths
 const demoItems = [
-  { name: "Dashboard", icon: <FaTachometerAlt />, path: "/dashboard" },
+  { name: "Home", icon: <IoHome />, path: "/" },
+  { name: "Add User", icon: <IoMdAdd />, path: "/create-user" },
+  { name: "Deleted", icon: <FaHistory />, path: "/fuel" },
+  { name: "Search", icon: <FaSearch />, path: "/temperature" },
+  { name: "Single", icon: <FaRegUser />, path: "/single-user" },
   { name: "Analytics", icon: <FaChartPie />, path: "/analytics" },
-  { name: "Rockets", icon: <FaRocket />, path: "/rockets" },
-  { name: "Fuel", icon: <FaFire />, path: "/fuel" },
-  { name: "Temperature", icon: <FaThermometerHalf />, path: "/temperature" },
-  { name: "Single", icon: <FaThermometerHalf />, path: "/single-user" },
 ];
 
 // Root Layout
@@ -47,13 +48,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased `}
       >
         <div className="flex h-screen bg-gray-100">
           {/* Sidebar */}
           <aside className="bg-gray-900 text-white flex flex-col">
             <h1 className="hidden md:block text-2xl font-bold p-6 border-b border-gray-700">
-              Mission Control
+              CRUD MATE
             </h1>
             <nav className="flex-1">
               <ul className="space-y-2 px-4 py-6">
@@ -75,7 +76,23 @@ export default function RootLayout({
           </aside>
 
           {/* Main Content */}
-          <main className="flex-1 p-6">{children}</main>
+          <main className="flex-1">
+            {/* react toastify */}
+            <ToastContainer
+              position="top-center"
+              autoClose={2500}
+              transition={Slide}
+              hideProgressBar
+              newestOnTop
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              theme="light"
+            />
+            {children}
+          </main>
         </div>
       </body>
     </html>
