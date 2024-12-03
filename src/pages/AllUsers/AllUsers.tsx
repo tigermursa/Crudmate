@@ -9,28 +9,6 @@ import EditUserModal from "@/components/modals/EditUserModal/EditUserModal";
 import { toast } from "react-toastify";
 import UserCard from "@/components/Card/UserCard/UserCard";
 
-// Function to generate a deterministic color based on the user's name
-const getColorFromName = (name: string) => {
-  let hash = 0;
-  for (let i = 0; i < name.length; i++) {
-    hash = (hash << 5) - hash + name.charCodeAt(i);
-    hash |= 0; // Converting to 32bit integer
-  }
-
-  const colors = [
-    "bg-red-400",
-    "bg-blue-400",
-    "bg-green-400",
-    "bg-yellow-400",
-    "bg-purple-400",
-    "bg-pink-400",
-    "bg-indigo-400",
-    "bg-teal-400",
-  ];
-
-  return colors[Math.abs(hash) % colors.length];
-};
-
 const AllUsers = () => {
   const [selectedUser, setSelectedUser] = useState<user | null>(null);
   const [isModalOpen, setModalOpen] = useState(false);
@@ -68,7 +46,6 @@ const AllUsers = () => {
     users,
     handleEditClick,
     handleDeleteClick,
-    getColorFromName,
   };
 
   return (
