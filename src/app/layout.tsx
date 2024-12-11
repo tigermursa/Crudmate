@@ -40,7 +40,6 @@ const demoItems = [
   { name: "Analytics", icon: <FaChartPie />, path: "/analytics" },
 ];
 
-// Root Layout
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -51,9 +50,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased `}
       >
-        <div className="flex h-screen bg-gray-100">
+        <div className="flex h-screen bg-gray-100 overflow-hidden">
           {/* Sidebar */}
-          <aside className="bg-gray-900 text-white flex flex-col">
+          <aside className="bg-gray-900 text-white flex flex-col w-64 flex-shrink-0">
             <h1 className="hidden md:block text-2xl font-bold p-6 border-b border-gray-700">
               CRUD MATE
             </h1>
@@ -77,8 +76,8 @@ export default function RootLayout({
           </aside>
 
           {/* Main Content */}
-          <main className="flex-1">
-            {/* react toastify */}
+          <main className="flex-1 overflow-y-auto">
+            {/* React Toastify */}
             <ToastContainer
               position="top-center"
               autoClose={2500}
