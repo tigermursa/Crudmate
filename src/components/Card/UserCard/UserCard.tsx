@@ -70,7 +70,7 @@ const UserCard = ({ userCardProps }: { userCardProps: UserCardProps }) => {
                   <div className="flex items-center space-x-1">
                     <FaCalendarAlt className="text-white text-xs sm:text-sm md:text-lg" />
                     <p>
-                      <strong>Age:</strong> {user.age}
+                      <strong>Ages:</strong> {user.age}
                     </p>
                   </div>
                   <div className="flex items-center space-x-1">
