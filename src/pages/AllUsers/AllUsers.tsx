@@ -49,7 +49,7 @@ const AllUsers = () => {
   };
 
   return (
-    <div className="w-full  mx-auto px-4 py-8 container-bg-design">
+    <div className="w-full min-h-screen   mx-auto px-4 py-8 container-bg-design">
       <h3 className="text-3xl font-semibold text-center text-gray-100 mb-8">
         All Users
       </h3>
