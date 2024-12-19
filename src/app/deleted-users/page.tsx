@@ -6,6 +6,7 @@ import { api } from "@/utils/api"; // Assuming api.ts contains your API methods
 
 import { toast } from "react-toastify";
 import UserCard from "@/components/Card/UserCard/UserCard";
+import Loader from "@/components/Loader/Loader";
 
 const AllDeletedUsers = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -28,14 +29,22 @@ const AllDeletedUsers = () => {
     }
   };
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading)
+    return (
+      <div>
+        <Loader />
+      </div>
+    );
   if (error) return <div>Error loading users</div>;
 
   const users = data?.data;
 
+  const forRestore = true;
+
   const userCardProps = {
     users,
     handleDeleteClick,
+    forRestore,
   };
 
   return (

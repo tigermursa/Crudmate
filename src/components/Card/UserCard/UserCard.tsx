@@ -11,13 +11,15 @@ import {
 import { ImPhone } from "react-icons/im";
 
 interface UserCardProps {
+  forRestore?: boolean;
   users: user[];
   handleEditClick?: (user: user) => void;
   handleDeleteClick: (uid: string) => void;
 }
 
 const UserCard = ({ userCardProps }: { userCardProps: UserCardProps }) => {
-  const { users, handleEditClick, handleDeleteClick } = userCardProps;
+  const { users, forRestore, handleEditClick, handleDeleteClick } =
+    userCardProps;
 
   return (
     <div className="flex justify-center items-center">
@@ -106,13 +108,25 @@ const UserCard = ({ userCardProps }: { userCardProps: UserCardProps }) => {
                     <FaEdit className="text-white text-sm" />
                   </button>
                 )}
-                <button
-                  title={user.isDeleted ? "Restore User" : "Delete User"}
-                  className="p-2 rounded-md  hover:bg-gray-600 hover:bg-opacity-30 transition-colors"
-                  onClick={() => handleDeleteClick(user.uid)} // Toggle delete status
-                >
-                  <FaTrashAlt className="text-white text-sm" />
-                </button>
+
+                {!forRestore && (
+                  <button
+                    title={user.isDeleted ? "Restore User" : "Delete User"}
+                    className="p-2 rounded-md  hover:bg-gray-600 hover:bg-opacity-30 transition-colors"
+                    onClick={() => handleDeleteClick(user.uid)} // Toggle delete status
+                  >
+                    <FaTrashAlt className="text-white text-sm" />
+                  </button>
+                )}
+                {forRestore && (
+                  <button
+                    title={user.isDeleted ? "Restore User" : "Delete User"}
+                    className="p-2 text-white rounded-md border  hover:bg-gray-600 hover:bg-opacity-30 transition-colors"
+                    onClick={() => handleDeleteClick(user.uid)} // Toggle delete status
+                  >
+                    Restore
+                  </button>
+                )}
               </div>
             </div>
           );

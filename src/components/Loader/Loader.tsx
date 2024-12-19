@@ -3,8 +3,8 @@ import "./Loader.css";
 const Loader = () => {
   return (
     /* From Uiverse.io by KSAplay */
-    <div className="loader h-screen">
-      <div className="loading-text text-black font-bold text-2xl">
+    <div className="loader min-h-screen container-bg-design">
+      <div className="loading-text text-white font-bold text-2xl">
         Loading<span className="dot">.</span>
         <span className="dot">.</span>
         <span className="dot">.</span>

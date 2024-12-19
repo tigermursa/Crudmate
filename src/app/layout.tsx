@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import { FaHistory, FaChartPie, FaSearch, FaRegUser } from "react-icons/fa";
+import { FaChartPie, FaSearch, FaRegUser } from "react-icons/fa";
 import { IoHome } from "react-icons/io5";
 import { IoMdAdd } from "react-icons/io";
 import Link from "next/link";
@@ -35,6 +35,10 @@ export const metadata: Metadata = {
 const demoItems = [
   { name: "Home", icon: <IoHome />, path: "/" },
   { name: "Add User", icon: <IoMdAdd />, path: "/create-user" },
+
+  { name: "Search", icon: <FaSearch />, path: "/search" },
+  { name: "Single", icon: <FaRegUser />, path: "/single-user" },
+  { name: "Analytics", icon: <FaChartPie />, path: "/analytics" },
   {
     name: "Recycle Bin",
     icon: (
@@ -48,9 +52,6 @@ const demoItems = [
     ),
     path: "/deleted-users",
   },
-  { name: "Search", icon: <FaSearch />, path: "/search" },
-  { name: "Single", icon: <FaRegUser />, path: "/single-user" },
-  { name: "Analytics", icon: <FaChartPie />, path: "/analytics" },
 ];
 
 export default function RootLayout({
