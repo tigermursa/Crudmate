@@ -9,6 +9,7 @@ import EditUserModal from "@/components/modals/EditUserModal/EditUserModal";
 import { toast } from "react-toastify";
 import UserCard from "@/components/Card/UserCard/UserCard";
 import Loader from "@/components/Loader/Loader";
+import { FaRegFrown } from "react-icons/fa";
 
 const AllUsers = () => {
   const [selectedUser, setSelectedUser] = useState<user | null>(null);
@@ -54,6 +55,16 @@ const AllUsers = () => {
     handleEditClick,
     handleDeleteClick,
   };
+
+  // console.log(users?.length);
+  if (!users || users?.length == 0) {
+    return (
+      <div className="container-bg-design min-h-screen flex flex-col justify-center items-center text-white text-2xl space-y-4">
+        <FaRegFrown className="text-6xl text-gray-100" />
+        <span>No data available</span>
+      </div>
+    );
+  }
 
   return (
     <div className="w-full min-h-screen   mx-auto px-4 py-8 container-bg-design">
