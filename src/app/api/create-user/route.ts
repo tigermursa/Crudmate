@@ -6,7 +6,7 @@ export async function POST(req: NextRequest) {
     const userData = await req.json();
 
     try {
-        const response = await fetch('http://localhost:5000/api/v1/create-user', {
+        const response = await fetch('https://crudemate-server.vercel.app/api/v1/create-user', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
