@@ -8,6 +8,7 @@ import { useState } from "react";
 import EditUserModal from "@/components/modals/EditUserModal/EditUserModal";
 import { toast } from "react-toastify";
 import UserCard from "@/components/Card/UserCard/UserCard";
+import Loader from "@/components/Loader/Loader";
 
 const AllUsers = () => {
   const [selectedUser, setSelectedUser] = useState<user | null>(null);
@@ -37,7 +38,13 @@ const AllUsers = () => {
     }
   };
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading)
+    return (
+      <div>
+        <Loader />
+      </div>
+    );
+
   if (error) return <div>Error loading users</div>;
 
   const users = data?.data;
