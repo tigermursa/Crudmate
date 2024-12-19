@@ -11,6 +11,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Slide } from "react-toastify";
 import { SWRProvider } from "@/utils/swr-config";
+import Image from "next/image";
 
 // Fonts
 const geistSans = localFont({
@@ -34,7 +35,19 @@ export const metadata: Metadata = {
 const demoItems = [
   { name: "Home", icon: <IoHome />, path: "/" },
   { name: "Add User", icon: <IoMdAdd />, path: "/create-user" },
-  { name: "Deleted", icon: <FaHistory />, path: "/deleted-users" },
+  {
+    name: "Recycle Bin",
+    icon: (
+      <Image
+        width={620}
+        height={620}
+        src="https://img.icons8.com/color/512/bin-windows.png"
+        alt="Recycle Bin"
+        className="w-6 h-6"
+      />
+    ),
+    path: "/deleted-users",
+  },
   { name: "Search", icon: <FaSearch />, path: "/search" },
   { name: "Single", icon: <FaRegUser />, path: "/single-user" },
   { name: "Analytics", icon: <FaChartPie />, path: "/analytics" },
