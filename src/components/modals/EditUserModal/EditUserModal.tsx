@@ -46,6 +46,7 @@ const EditUserModal = ({
         <h2 className="text-xl font-bold mb-4">Edit User</h2>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+          <div></div>
           <div>
             <label className="block text-sm font-medium text-gray-700">
               UID
