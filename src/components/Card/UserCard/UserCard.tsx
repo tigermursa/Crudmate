@@ -11,7 +11,8 @@ interface UserCardProps {
 }
 
 const UserCard = ({ userCardProps }: { userCardProps: UserCardProps }) => {
-  const { users, handleEditClick, handleDeleteClick } = userCardProps;
+  const { users, handleEditClick, handleDeleteClick, forRestore } =
+    userCardProps;
   const [selectedUser, setSelectedUser] = useState<user | null>(null);
 
   const getGenderIcon = (gender: string) => {
@@ -36,7 +37,7 @@ const UserCard = ({ userCardProps }: { userCardProps: UserCardProps }) => {
           >
             {/* Basic Info */}
             <div className="flex justify-between items-center">
-              <h4 className="text-lg sm:text-xl  text-gray-50 truncate sour-gummy">
+              <h4 className="text-lg sm:text-xl text-gray-50 truncate sour-gummy">
                 {user.firstName} {user.lastName}
               </h4>
               <p className="text-sm text-gray-400 ms-2">{user.uid}</p>
@@ -60,6 +61,7 @@ const UserCard = ({ userCardProps }: { userCardProps: UserCardProps }) => {
         user={selectedUser}
         handleEditClick={handleEditClick}
         handleDeleteClick={handleDeleteClick}
+        forRestore={forRestore} // Pass forRestore prop
       />
     </div>
   );

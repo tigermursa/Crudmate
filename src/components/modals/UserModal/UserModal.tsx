@@ -10,6 +10,7 @@ interface UserModalProps {
   user: user | null;
   handleEditClick?: (user: user) => void;
   handleDeleteClick: (uid: string) => void;
+  forRestore?: boolean;
 }
 
 const UserModal = ({
@@ -18,6 +19,7 @@ const UserModal = ({
   user,
   handleEditClick,
   handleDeleteClick,
+  forRestore, // New prop to control button rendering
 }: UserModalProps) => {
   if (!isOpen || !user) return null;
 
@@ -88,17 +90,25 @@ const UserModal = ({
         <div className="flex justify-between items-center mt-6 border-t border-gray-700 pt-4">
           {handleEditClick && (
             <button
-              className="flex items-center  text-white hover:text-blue-600 rounded transition"
+              className="flex items-center text-white hover:text-blue-600 rounded transition"
               onClick={() => handleEdit(user)}
             >
               <FaEdit className="mr-2" />
             </button>
           )}
+          {/* Conditional Button Rendering */}
           <button
-            className="flex items-center   text-white hover:text-red-600  rounded transition"
-            onClick={() => handleDeleteClick(user.uid)}
+            className="flex items-center text-white hover:text-red-600 rounded transition"
+            onClick={() => {
+              handleDeleteClick(user.uid); // You can modify this to handle restoring the user
+              onClose();
+            }}
           >
-            <FaTrashAlt className="mr-2" />
+            {forRestore ? (
+              <span className="border p-2 rounded-md text-sm">Restore</span> // Restore button text
+            ) : (
+              <FaTrashAlt className="mr-2" />
+            )}
           </button>
         </div>
       </div>

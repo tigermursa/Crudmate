@@ -2,8 +2,8 @@ import { FaExclamationTriangle } from "react-icons/fa";
 
 const ServerError = () => {
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100 px-4">
-      <div className="bg-white shadow-lg rounded-lg p-8 max-w-md text-center flex flex-col justify-center items-center">
+    <div className="flex items-center justify-center min-h-screen bg-gray-700 px-4">
+      <div className="bg-gray-200 shadow-lg rounded-lg p-8 max-w-md text-center flex flex-col justify-center items-center">
         <div className="text-red-500 text-6xl">
           <FaExclamationTriangle />
         </div>
