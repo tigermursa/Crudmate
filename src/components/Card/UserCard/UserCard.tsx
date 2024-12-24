@@ -1,14 +1,7 @@
+import { useState } from "react";
 import { user } from "@/types/types";
-import {
-  FaBriefcase,
-  FaCalendarAlt,
-  FaEdit,
-  FaMapMarkerAlt,
-  FaTrashAlt,
-  FaVenusMars,
-  FaUser,
-} from "react-icons/fa";
-import { ImPhone } from "react-icons/im";
+import UserModal from "@/components/modals/UserModal/UserModal";
+import { FaMars, FaVenus, FaGenderless } from "react-icons/fa";
 
 interface UserCardProps {
   forRestore?: boolean;
@@ -18,120 +11,56 @@ interface UserCardProps {
 }
 
 const UserCard = ({ userCardProps }: { userCardProps: UserCardProps }) => {
-  const { users, forRestore, handleEditClick, handleDeleteClick } =
-    userCardProps;
+  const { users, handleEditClick, handleDeleteClick } = userCardProps;
+  const [selectedUser, setSelectedUser] = useState<user | null>(null);
+
+  const getGenderIcon = (gender: string) => {
+    switch (gender.toLowerCase()) {
+      case "male":
+        return <FaMars className="text-blue-500 text-2xl" />;
+      case "female":
+        return <FaVenus className="text-pink-500 text-2xl" />;
+      default:
+        return <FaGenderless className="text-gray-500 text-2xl" />;
+    }
+  };
 
   return (
     <div className="flex justify-center items-center">
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {users?.map((user: user) => {
-          // Determine avatar background color based on gender
-          const avatarColor =
-            user.gender === "Male"
-              ? "bg-blue-400"
-              : user.gender === "Female"
-              ? "bg-pink-400"
-              : "bg-gray-400"; // Default color for unspecified gender
-
-          return (
-            <div
-              key={user?.uid}
-              className="bg-blue-900 bg-opacity-20 p-4 rounded-lg   relative hover:shadow-2xl shadow-black  cursor-pointer transition-shadow border-2 border-white w-[220px] lg:w-[300px] sour-gummy"
-            >
-              {/* Avatar */}
-              <div className="flex flex-col items-center mb-4">
-                <div
-                  className={`w-20 h-20 rounded-full flex items-center justify-center text-white text-3xl font-bold ${avatarColor}`}
-                >
-                  {user.gender === "Male" || user.gender === "Female" ? (
-                    <>
-                      {user.firstName.charAt(0)}
-                      {user.lastName.charAt(0)}
-                    </>
-                  ) : (
-                    <FaUser /> // Generic user icon for unspecified gender
-                  )}
-                </div>
-                <h4 className="text-lg sm:text-xl md:text-2xl font-extrabold text-gray-50 mt-5">
-                  {user.firstName} {user.lastName}
-                </h4>
-                <p className="text-xs sm:text-sm md:text-lg text-white">
-                  {user.email}
-                </p>
-              </div>
-
-              {/* User Details */}
-              <div className="mt-4 space-y-2 text-gray-50 text-xs sm:text-sm md:text-lg">
-                <div className="flex items-center space-x-1">
-                  <FaBriefcase className="text-white text-xs sm:text-sm md:text-lg" />
-                  <p>
-                    <strong>Work:</strong> {user.work}
-                  </p>
-                </div>
-                <div className="flex gap-2 items-center">
-                  <div className="flex items-center space-x-1">
-                    <FaCalendarAlt className="text-white text-xs sm:text-sm md:text-lg" />
-                    <p>
-                      <strong>Ages:</strong> {user.age}
-                    </p>
-                  </div>
-                  <div className="flex items-center space-x-1">
-                    <FaVenusMars className="text-white text-xs sm:text-sm md:text-lg" />
-                    <p>
-                      <strong>Gender:</strong> {user.gender || "Unspecified"}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-center space-x-1 truncate">
-                  <FaMapMarkerAlt className="text-white text-xs sm:text-sm md:text-lg" />
-                  <p>
-                    <strong>Location:</strong> {user.city}, {user.country}
-                  </p>
-                </div>
-                <div className="flex items-center space-x-1">
-                  <ImPhone className="text-white text-xs sm:text-sm md:text-lg" />
-                  <p>
-                    <strong>Phone:</strong> {user.phoneNumber}
-                  </p>
-                </div>
-              </div>
-
-              {/* Action Buttons */}
-              <div className="mt-4 flex justify-center space-x-2">
-                {handleEditClick && (
-                  <button
-                    title="Edit User"
-                    className="p-2 rounded-full hover:bg-gray-400 transition-colors"
-                    onClick={() => handleEditClick(user)} // Only call handleEditClick if it's defined
-                  >
-                    <FaEdit className="text-white text-sm" />
-                  </button>
-                )}
-
-                {!forRestore && (
-                  <button
-                    title={user.isDeleted ? "Restore User" : "Delete User"}
-                    className="p-2 rounded-md  hover:bg-gray-600 hover:bg-opacity-30 transition-colors"
-                    onClick={() => handleDeleteClick(user.uid)} // Toggle delete status
-                  >
-                    <FaTrashAlt className="text-white text-sm" />
-                  </button>
-                )}
-                {forRestore && (
-                  <button
-                    title={user.isDeleted ? "Restore User" : "Delete User"}
-                    className="p-2 text-white rounded-md border  hover:bg-gray-600 hover:bg-opacity-30 transition-colors"
-                    onClick={() => handleDeleteClick(user.uid)} // Toggle delete status
-                  >
-                    Restore
-                  </button>
-                )}
-              </div>
+        {users.map((user) => (
+          <div
+            key={user.uid}
+            className="bg-blue-900 bg-opacity-20 p-4 rounded-lg relative hover:shadow-2xl shadow-black cursor-pointer transition-shadow border-2 border-white w-[220px] lg:w-[300px]"
+            onClick={() => setSelectedUser(user)} // Open modal
+          >
+            {/* Basic Info */}
+            <div className="flex justify-between items-center">
+              <h4 className="text-lg sm:text-xl  text-gray-50 truncate sour-gummy">
+                {user.firstName} {user.lastName}
+              </h4>
+              <p className="text-sm text-gray-400 ms-2">{user.uid}</p>
             </div>
-          );
-        })}
+            <p className="mt-2 text-sm text-gray-300">
+              <strong></strong> {user.work}
+            </p>
+
+            {/* Gender Icon */}
+            <div className="absolute bottom-2 right-2">
+              {getGenderIcon(user.gender || "Unspecified")}
+            </div>
+          </div>
+        ))}
       </div>
+
+      {/* Modal */}
+      <UserModal
+        isOpen={!!selectedUser}
+        onClose={() => setSelectedUser(null)}
+        user={selectedUser}
+        handleEditClick={handleEditClick}
+        handleDeleteClick={handleDeleteClick}
+      />
     </div>
   );
 };
