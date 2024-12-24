@@ -10,6 +10,7 @@ import { toast } from "react-toastify";
 import UserCard from "@/components/Card/UserCard/UserCard";
 import Loader from "@/components/Loader/Loader";
 import { FaRegFrown } from "react-icons/fa";
+import ServerError from "@/components/Error/ServerError/ServerError";
 
 const AllUsers = () => {
   const [selectedUser, setSelectedUser] = useState<user | null>(null);
@@ -46,7 +47,13 @@ const AllUsers = () => {
       </div>
     );
 
-  if (error) return <div>Error loading users</div>;
+  if (error)
+    return (
+      <div>
+        {" "}
+        <ServerError />{" "}
+      </div>
+    );
 
   const users = data?.data;
 

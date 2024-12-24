@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 import UserCard from "@/components/Card/UserCard/UserCard";
 import Loader from "@/components/Loader/Loader";
 import { FaRegFrown } from "react-icons/fa";
+import ServerError from "@/components/Error/ServerError/ServerError";
 
 const AllDeletedUsers = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -36,7 +37,13 @@ const AllDeletedUsers = () => {
         <Loader />
       </div>
     );
-  if (error) return <div>Error loading users</div>;
+  if (error)
+    return (
+      <div>
+        {" "}
+        <ServerError />{" "}
+      </div>
+    );
 
   const users = data?.data;
 
