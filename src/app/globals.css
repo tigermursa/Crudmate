@@ -20,5 +20,25 @@
 
 .sour-gummy {
   font-family: "Sour Gummy", sans-serif;
-  font-weight: 400;
+  font-weight: 300;
+}
+
+/* Global scrollbar styles */
+::-webkit-scrollbar {
+  width: 4px; /* Width of the scrollbar */
+  height: 8px; /* Height of the scrollbar (for horizontal scrollbars) */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #007bff; /* Blue color for the scrollbar thumb */
+  border-radius: 4px; /* Rounded corners */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+::-webkit-scrollbar-track {
+  background-color: #f0f0f0; /* Light gray background for the scrollbar track */
+  border-radius: 4px;
 }

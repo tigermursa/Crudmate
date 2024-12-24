@@ -36,7 +36,7 @@ const UserCard = ({ userCardProps }: { userCardProps: UserCardProps }) => {
           return (
             <div
               key={user?.uid}
-              className="bg-cyan-950 p-4 rounded-lg   relative hover:shadow-2xl shadow-black  cursor-pointer transition-shadow border-2 border-white w-[220px] lg:w-[300px] sour-gummy"
+              className="bg-blue-900 bg-opacity-20 p-4 rounded-lg   relative hover:shadow-2xl shadow-black  cursor-pointer transition-shadow border-2 border-white w-[220px] lg:w-[300px] sour-gummy"
             >
               {/* Avatar */}
               <div className="flex flex-col items-center mb-4">
