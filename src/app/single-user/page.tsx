@@ -37,7 +37,7 @@ const SingleUser = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center p-4 min-h-screen bg-gray-900 text-gray-200">
+    <div className="flex flex-col items-center justify-center p-4 min-h-screen  text-gray-200 container-bg-design ">
       <h3 className="text-2xl font-semibold mb-6 text-blue-400">
         Search for a User Using UID
       </h3>
