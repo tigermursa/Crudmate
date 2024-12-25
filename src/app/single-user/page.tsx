@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import useSWR from "swr";
-import { FaSearch, FaTimes } from "react-icons/fa";
+import { FaSearch } from "react-icons/fa";
 import { api } from "@/utils/api";
 import { user } from "@/types/types";
 import SingleUserModal from "@/components/modals/SingleUserModal/SingleUserModal";
