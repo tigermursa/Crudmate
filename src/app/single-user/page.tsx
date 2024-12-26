@@ -55,6 +55,7 @@ const SingleUser = () => {
         >
           <FaSearch size={18} />
           <span>Search</span>
+          <span>Search</span>
         </button>
       </div>
 
