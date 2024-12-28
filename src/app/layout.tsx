@@ -37,7 +37,7 @@ export default function RootLayout({
       >
         <div className="flex h-screen bg-gray-100 overflow-hidden">
           <Dashboard />
-          <main className="flex-1 overflow-y-auto">
+          <main className="flex-1 overflow-y-auto hidden">
             <ToastContainer
               position="top-center"
               autoClose={2500}
